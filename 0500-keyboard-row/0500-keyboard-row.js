@@ -9,24 +9,13 @@ var findWords = function(words) {
     const row3 = "zxcvbnm";
 
     for(let word of words){
-        let valid = [...word].every((char)=>row1.includes(char.toLowerCase()))
-
-        if(valid){
+        if([...word].every(char=>row1.includes(char.toLowerCase()))){
             result.push(word)
-        }
-
-        valid = [...word].every((char)=>row2.includes(char.toLowerCase()))
-
-        if(valid){
+        }else if([...word].every(char=>row2.includes(char.toLowerCase()))){
             result.push(word)
-        }
-
-        valid = [...word].every((char)=>row3.includes(char.toLowerCase()))
-
-        if(valid){
+        }else if([...word].every(char=>row3.includes(char.toLowerCase()))){
             result.push(word)
         }
     }
-
     return result;
 };
