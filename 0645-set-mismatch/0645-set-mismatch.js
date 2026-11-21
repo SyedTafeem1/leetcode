@@ -3,24 +3,23 @@
  * @return {number[]}
  */
 var findErrorNums = function(nums) {
-    const map = new Map();
-    for(let i = 0; i < nums.length; i++){
-        if(map.has(nums[i])){
-            map.set(nums[i],map.get(nums[i])+1)
+ const set = new Set();
+    let duplicate = 0;
+    let actualSum = 0;
+
+    for(let num of nums){
+        actualSum += num;
+
+        if(set.has(num)){
+            duplicate = num;
         }else{
-            map.set(nums[i],1)
+            set.add(num);
         }
     }
-    let duplicate = 0;
 
-    for(let [key,value] of map){
-        if(value > 1)duplicate = key
-    }
-    let missing = 0;
-    for(let i = 1; i <= nums.length; i++){
-        if(!map.has(i))missing = i
-     
-    }
+    const n = nums.length;
+    const expectedSum = n * (n + 1) / 2;
+    const missing = expectedSum - actualSum + duplicate;
 
-    return [duplicate,missing]
+    return [duplicate, missing];
 };
