@@ -9,11 +9,7 @@ var uncommonFromSentences = function(s1, s2) {
     const words = [...s1.split(" "), ...s2.split(" ")];
 
     for(let word of words){
-        if(map.has(word)){
-            map.set(word,map.get(word)+1)
-        }else{
-            map.set(word,1)
-        }
+       map.set(word, (map.get(word) || 0) + 1);
     }
 
     const result = [];
